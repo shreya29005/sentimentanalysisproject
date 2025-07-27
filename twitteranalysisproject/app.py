@@ -130,7 +130,7 @@ def main():
         st.markdown("### 📝 Single Post Analysis")
         caption = st.text_area(
             "Paste Instagram caption here:",
-            placeholder="Example: Just had the most amazing day at the beach! 🌊☀️ #blessed #goodvibes",
+            placeholder="Example: Just had the most amazing day ! ",
             height=100
         )
         
@@ -151,10 +151,10 @@ def main():
         
         captions_text = st.text_area(
             "Paste multiple captions (one per line):",
-            placeholder="""Amazing sunset today! 🌅
+            placeholder="""Amazing sunset today! 
 Feeling grateful for this moment
 Not the best day but tomorrow will be better
-Excited for the weekend! 🎉""",
+Excited for the weekend! """,
             height=200
         )
         
@@ -166,7 +166,7 @@ Excited for the weekend! 🎉""",
                     results = analyze_multiple_posts(captions, model, vectorizer, stop_words)
                     
                     # Display results
-                    st.markdown("### 📊 Analysis Results")
+                    st.markdown("###  Analysis Results")
                     
                     # Summary statistics
                     positive_count = sum(1 for r in results if r['sentiment'] == 'Positive')
@@ -175,11 +175,11 @@ Excited for the weekend! 🎉""",
                     
                     col1, col2, col3 = st.columns(3)
                     with col1:
-                        st.metric("✅ Positive", positive_count)
+                        st.metric(" Positive", positive_count)
                     with col2:
-                        st.metric("❌ Negative", negative_count)
+                        st.metric(" Negative", negative_count)
                     with col3:
-                        st.metric("⚪ Neutral", neutral_count)
+                        st.metric(" Neutral", neutral_count)
                     
                     st.markdown("---")
                     
@@ -200,7 +200,7 @@ Excited for the weekend! 🎉""",
                 st.warning("Please enter some text to analyze!")
     
     elif option == "Bulk Text Analysis":
-        st.markdown("### 📊 Bulk Text Analysis")
+        st.markdown("###  Bulk Text Analysis")
         
         uploaded_file = st.file_uploader(
             "Upload a text file with captions (one per line)",
@@ -221,17 +221,17 @@ Excited for the weekend! 🎉""",
                 negative_count = sum(1 for r in results if r['sentiment'] == 'Negative')
                 neutral_count = sum(1 for r in results if r['sentiment'] == 'Neutral')
                 
-                st.markdown("### 📈 Summary")
+                st.markdown("###  Summary")
                 col1, col2, col3 = st.columns(3)
                 with col1:
-                    st.metric("✅ Positive", f"{positive_count} ({positive_count/len(results)*100:.1f}%)")
+                    st.metric(" Positive", f"{positive_count} ({positive_count/len(results)*100:.1f}%)")
                 with col2:
-                    st.metric("❌ Negative", f"{negative_count} ({negative_count/len(results)*100:.1f}%)")
+                    st.metric(" Negative", f"{negative_count} ({negative_count/len(results)*100:.1f}%)")
                 with col3:
-                    st.metric("⚪ Neutral", f"{neutral_count} ({neutral_count/len(results)*100:.1f}%)")
+                    st.metric(" Neutral", f"{neutral_count} ({neutral_count/len(results)*100:.1f}%)")
                 
                 # Download results
-                if st.button("📥 Download Results"):
+                if st.button(" Download Results"):
                     import pandas as pd
                     df = pd.DataFrame(results)
                     csv = df.to_csv(index=False)
@@ -244,7 +244,7 @@ Excited for the weekend! 🎉""",
 
     # Footer
     st.markdown("---")
-    st.markdown("💡 **Tip:** For best results, copy full captions including emojis and hashtags!")
+    st.markdown(" **Tip:** For best results, copy full captions including emojis and hashtags!")
 
 if __name__ == "__main__":
     main()
